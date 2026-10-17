@@ -1,0 +1,11 @@
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        pre = { 0 : 1}
+        currSum = 0
+        count = 0
+        for n in nums:
+            currSum += n
+            diff = currSum - k
+            count += pre.get(diff, 0)
+            pre[currSum] = 1 + pre.get(currSum, 0)
+        return count
